@@ -309,7 +309,6 @@ img {
   transform: translateX(100%);
   transition: 0.5s linear;
   @include media-tablet() {
-    // animation: menu 2s;
     transition: 0.5s linear;
     padding: 30px 10px;
     background-color: $color-dark-3xl;
@@ -520,6 +519,10 @@ img {
 }
 
 // our-friends section start
+.hidden_article {
+  display: none;
+}
+
 .our-friends {
   background-color: $color-light-l;
 

@@ -467,6 +467,10 @@ img {
   margin-bottom: 0px;
 }
 
+.hidden_article {
+  display: none;
+}
+
 .our-friends {
   background-color: #f6f6f6;
 }
