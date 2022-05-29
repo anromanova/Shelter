@@ -346,22 +346,6 @@ img {
   }
 }
 
-// @keyframes menu {
-//   from {
-//     margin-left: 0%;
-//     width: 50%;
-//   }
-
-//   to {
-//     margin-left: 100%;
-//     width: 320px;
-//   }
-// }
-
-// .burger_open {
-//   display: block;
-// }
-
 .mobile-logo-header {
   margin-bottom: 158px;
   .logo__title {
@@ -909,9 +893,10 @@ img {
 }
 
 .in-addition__title {
+  text-align: left;
   margin: 0;
   max-width: 300px;
-  @include media-laptop() {
+  @include media-tablet() {
     text-align: center;
   }
 }

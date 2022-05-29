@@ -888,10 +888,11 @@ img {
 }
 
 .in-addition__title {
+  text-align: left;
   margin: 0;
   max-width: 300px;
 }
-@media (max-width: 1279px) {
+@media (max-width: 767px) {
   .in-addition__title {
     text-align: center;
   }
