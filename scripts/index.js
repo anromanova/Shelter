@@ -1,7 +1,7 @@
 import { burgerBtn, toggleMenu, background, links } from './burger.js';
 import { modalOpen, modalClose, learnButton, petCard, modalButton, modal, modalShadow, cardHover } from './modal.js';
 
-import pets from '../../pets.json' assert { type: "json" };
+import pets from '../pets.json' assert { type: "json" };
 let petsArr = pets.map((item, index) => ({ ...item, id: index }));
 
 // 'use strict'
