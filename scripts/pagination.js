@@ -1,5 +1,5 @@
-// import { petsArr, renderSlide } from './index.js';
-import { getPets, petsArr, renderSlide } from './index.js';
+import { petsArr, renderSlide } from './index.js';
+// import { getPets, petsArr, renderSlide } from './index.js';
 
 const pagination = document.querySelector('.pagination-list__pets');
 const btnPaginationLast = pagination.querySelector('.pagination-list__last');
@@ -29,7 +29,7 @@ let paginationPetsArr = [];
 function createPaginationArray() {
     currentPage = -1;
     for (let i = 0; i < totalPets; i++) {
-        if (i % 8 === 0) {
+        if (i % petsPerPage === 0) {
             currentPage++;
             paginationPetsArr[currentPage] = [];
         }
@@ -85,11 +85,6 @@ function changePage(page) {
     if (page > totalPages) {
         page = totalPages;
     }
-    renderSlide(paginationPetsArr.slice((page - 1) * petsPerPage, (page - 1) * petsPerPage + petsPerPage));
-    if (pageNumber) {
-        pageNumber.innerHTML = page;
-    }
-
     if (page === 1) {
         btnPaginationFirst.classList.add('button-round--inactive');
         btnPaginationPrev.classList.add('button-round--inactive');
@@ -106,16 +101,19 @@ function changePage(page) {
         btnPaginationLast.classList.remove('button-round--inactive');
         btnPaginationNext.classList.remove('button-round--inactive');
     }
+    pageNumber.innerHTML = page;
+    let data = paginationPetsArr.slice((page - 1) * petsPerPage, (page - 1) * petsPerPage + petsPerPage);
+    renderSlide(data);
 }
 
-window.addEventListener('load', () => {
-    getPets().then(() => {
-        createPaginationArray();
-        firstPage();
-    });
-});
-
 // window.addEventListener('load', () => {
-//     createPaginationArray();
-//     firstPage();
+//     getPets().then(() => {
+//         createPaginationArray();
+//         firstPage();
+//     });
 // });
+
+window.addEventListener('load', () => {
+    createPaginationArray();
+    firstPage();
+});
