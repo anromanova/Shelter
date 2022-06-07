@@ -1,5 +1,6 @@
-import { burgerBtn, toggleMenu, background, links } from './burger.js';
+import './burger.js';
 import './modal.js';
+import './card.js';
 
 import pets from './pets.json' assert { type: "json" };
 export let petsArr = pets.map((item, index) => ({ ...item, id: index }));
@@ -22,43 +23,6 @@ export let petsArr = pets.map((item, index) => ({ ...item, id: index }));
 // getPets();
 
 
-links.forEach((link) => link.addEventListener('click', function (event) {
-  if (link.classList.contains('disabled-link')) {
-    event.preventDefault();
-  }
-  else { toggleMenu(); }
-}))
-
-burgerBtn.addEventListener('click', toggleMenu);
-background.addEventListener('click', toggleMenu);
-
-
-// pet's card
-const card = document.querySelector('.modal__card');
-const age = card.querySelector('.card-age');
-const inoculations = card.querySelector('.card-inoculations');
-const diseases = card.querySelector('.card-diseases');
-const parasites = card.querySelector('.card-parasites');
-let petImg = card.querySelector('img');
-let petName = card.querySelector('h3');
-const petText = card.querySelector('.card-text');
-const petBreed = card.querySelector('.card-pet');
-
-
-export function petShow(index) {
-  inoculations.innerHTML = ` ${pets[index].inoculations}`;
-  age.innerHTML = pets[index].age;
-  parasites.innerHTML = pets[index].parasites;
-  diseases.innerHTML = pets[index].diseases;
-  petName.innerHTML = pets[index].name;
-  petText.innerHTML = pets[index].description;
-  petBreed.innerHTML = `${pets[index].type} - ${pets[index].breed}`;
-  petImg.setAttribute('src', `../../${pets[index].img}`);
-
-}
-
-
-//render cards
 export const slide = document.querySelectorAll('.slider__item');
 
 
@@ -73,12 +37,6 @@ export function renderSlide(data) {
 }
 
 
-slide?.forEach(item => ('animationend', () => {
+slide.forEach(item => ('animationend', () => {
   item.classList.remove('slider_active')
 }))
-
-
-// window.addEventListener('load', () => {
-//   getDataForNextSlide(dataCurSlide);
-//   renderSlide(dataCurSlide);
-// });

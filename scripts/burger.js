@@ -19,3 +19,14 @@ export const toggleMenu = () => {
     scroll.style.overflowY = 'auto';
   }
 }
+
+
+links.forEach((link) => link.addEventListener('click', function (event) {
+  if (link.classList.contains('disabled-link')) {
+    event.preventDefault();
+  }
+  else { toggleMenu(); }
+}))
+
+burgerBtn.addEventListener('click', toggleMenu);
+background.addEventListener('click', toggleMenu);

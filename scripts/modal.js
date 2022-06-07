@@ -5,7 +5,7 @@ export const modal = document.querySelector('.modal__card');
 export const modalShadow = document.querySelector('.modal-shadow');
 export const cardHover = document.querySelector('.card-content');
 
-import { petShow } from './index.js';
+import { petShow } from './card.js';
 import { scroll } from './burger.js';
 
 
@@ -28,7 +28,6 @@ export const modalOpen = (index) => {
     modalShadow.classList.add('shadow_active');
     petShow(index);
     scroll.style.overflowY = 'hidden';
-    // renderSlide(dataCurSlide);
     modal.classList.add('slider_active');
 }
 
