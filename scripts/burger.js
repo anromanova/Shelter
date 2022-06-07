@@ -1,12 +1,12 @@
-export const burgerBtn = document.querySelector('.burger');
-export const menuMobile = document.querySelector('.burger__menu');
-export const links = document.querySelectorAll('.mobile-link');
+const burgerBtn = document.querySelector('.burger');
+const menuMobile = document.querySelector('.burger__menu');
+const links = document.querySelectorAll('.mobile-link');
 
 export const background = document.querySelector('.shadow-layer');
 export const scroll = document.querySelector('body');
 
 
-export const toggleMenu = () => {
+const toggleMenu = () => {
   menuMobile.classList.toggle('burger__menu_active');
   background.classList.toggle('shadow_add');
   burgerBtn.classList.toggle('burger_active');

@@ -1,5 +1,4 @@
-import { petsArr, renderSlide } from './index.js';
-// import { getPets, petsArr, renderSlide } from './index.js';
+import { getPets, petsArr, renderSlide } from './index.js';
 
 const pagination = document.querySelector('.pagination-list__pets');
 const btnPaginationLast = pagination.querySelector('.pagination-list__last');
@@ -26,7 +25,8 @@ else {
 let totalPages = Math.ceil(totalPets / petsPerPage);
 
 let paginationPetsArr = [];
-function createPaginationArray() {
+
+const createPaginationArray = () => {
     currentPage = -1;
     for (let i = 0; i < totalPets; i++) {
         if (i % petsPerPage === 0) {
@@ -42,42 +42,35 @@ function createPaginationArray() {
     return paginationPetsArr;
 }
 
-function shuffle(array) {
+const shuffle = (array) => {
     array.sort(() => Math.random() - 0.5);
 }
 
-
-btnPaginationPrev.addEventListener('click', prevPage);
-btnPaginationNext.addEventListener('click', nextPage);
-btnPaginationLast.addEventListener('click', lastPage);
-btnPaginationFirst.addEventListener('click', firstPage);
-
-
-function lastPage() {
+const lastPage = () => {
     currentPage = totalPages;
     changePage(currentPage);
 }
 
-function firstPage() {
+const firstPage = () => {
     currentPage = 1;
     changePage(currentPage);
 }
 
-function nextPage() {
+const nextPage = () => {
     if (currentPage < totalPages) {
         currentPage++;
         changePage(currentPage);
     }
 }
 
-function prevPage() {
+const prevPage = () => {
     if (currentPage > 1) {
         currentPage--;
         changePage(currentPage);
     }
 }
 
-function changePage(page) {
+const changePage = (page) => {
     page = currentPage;
     if (page < 1) {
         page = 1;
@@ -106,14 +99,15 @@ function changePage(page) {
     renderSlide(data);
 }
 
-// window.addEventListener('load', () => {
-//     getPets().then(() => {
-//         createPaginationArray();
-//         firstPage();
-//     });
-// });
+btnPaginationPrev.addEventListener('click', prevPage);
+btnPaginationNext.addEventListener('click', nextPage);
+btnPaginationLast.addEventListener('click', lastPage);
+btnPaginationFirst.addEventListener('click', firstPage);
+
 
 window.addEventListener('load', () => {
-    createPaginationArray();
-    firstPage();
+    getPets().then(() => {
+        createPaginationArray();
+        firstPage();
+    });
 });

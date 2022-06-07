@@ -1,32 +1,28 @@
+'use strict'
+
 import './burger.js';
 import './modal.js';
 import './card.js';
 
-import pets from './pets.json' assert { type: "json" };
-export let petsArr = pets.map((item, index) => ({ ...item, id: index }));
+export let petsArr;
+export function getPets() {
+  return fetch('../../scripts/pets.json')
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      petsArr = data.map((item, index) => ({ ...item, id: index }));
+      return petsArr;
+    });
+}
 
-// 'use strict'
-
-// let petsArr;
-// function getPets() {
-//   return fetch('../../pets.json')
-//     .then(response => {
-//       return response.json();
-//     })
-//     .then(data => {
-//       petsArr = data.map((item, index) => ({ ...item, id: index }));
-//       console.log(petsArr);
-//       return petsArr;
-//     });
-// }
-
-// getPets();
+getPets();
 
 
 export const slide = document.querySelectorAll('.slider__item');
 
 
-export function renderSlide(data) {
+export const renderSlide = (data) => {
 
   slide.forEach((item, index) => {
     item.querySelector('img').setAttribute('src', `../../${data[index].img}`);

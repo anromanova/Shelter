@@ -1,5 +1,4 @@
-import { petsArr, renderSlide, slide } from './index.js'
-// import { getPets, petsArr, renderSlide, dataCurSlide, slide } from './index.js'
+import { getPets, petsArr, renderSlide, slide } from './index.js'
 
 export let cardsPerSlide = 3;
 
@@ -40,15 +39,11 @@ export let getDataForNextSlide = (dataCurrentSlide) => {
     return dataCurSlide;
 }
 
-// window.addEventListener('load', () => {
-//     getPets().then(() => {
-//         dataCurSlide = petsArr.slice(0, cardsPerSlide);
-//         getDataForNextSlide(dataCurSlide);
-//     });
-// });
-
-let dataCurSlide = petsArr.slice(0, cardsPerSlide);
+let dataCurSlide;
 window.addEventListener('load', () => {
-    getDataForNextSlide(dataCurSlide);
-    renderSlide(dataCurSlide);
+    getPets().then(() => {
+        dataCurSlide = petsArr.slice(0, cardsPerSlide);
+        getDataForNextSlide(dataCurSlide);
+        renderSlide(dataCurSlide);
+    });
 });
