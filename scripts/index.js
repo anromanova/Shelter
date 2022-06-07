@@ -63,22 +63,7 @@ const buttonPrev = document.querySelector('.slider_prev');
 
 
 //render cards
-const sliderElement = document.querySelector('.slider_items');
 const slide = document.querySelectorAll('.slider__item');
-const allPetsElement = document.querySelector('.pets-cards');
-
-
-// function renderPagination() {
-//   allPetsElement?.querySelectorAll('.slider__item').forEach((item, index) => {
-//     item.querySelector('img').setAttribute('src', `../../${petsArr[index].img}`);
-//     item.querySelector('p').innerHTML = petsArr[index].name;
-//     item.querySelector('button').setAttribute('data-dog-id', index);
-//     item.setAttribute('data-dog-id', index);
-//   })
-// }
-
-
-// window.addEventListener('load', renderPagination());
 
 
 function renderSlide(data) {
@@ -90,16 +75,6 @@ function renderSlide(data) {
     item.setAttribute('data-dog-id', data[index].id);
   })
 }
-
-// function renderSlide(data, part) {
-
-//   part.forEach((item, index) => {
-//     item.querySelector('img').setAttribute('src', `../../${data[index].img}`);
-//     item.querySelector('p').innerHTML = data[index].name;
-//     item.querySelector('button').setAttribute('data-dog-id', data[index].id);
-//     item.setAttribute('data-dog-id', data[index].id);
-//   })
-// }
 
 const cardsPerSlide = 3;
 
@@ -185,35 +160,18 @@ function createPaginationArray() {
       currentPage++;
       paginationPetsArr[currentPage] = [];
     }
-    // paginationPetsArr[currentPage].push(i % 8);
     paginationPetsArr[currentPage].push(petsArr[i % 8]);
   }
   for (let i = 0; i < paginationPetsArr.length; i++) {
     shuffle(paginationPetsArr[i]);
   }
   paginationPetsArr = paginationPetsArr.flat();
-  console.log(paginationPetsArr);
   return paginationPetsArr;
 }
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
-
-
-// function createPaginationArray() {
-//   currentPage = -1;
-//   for (let i = 0; i < totalPets; i++) {
-//     paginationPetsArr.push((i % 8));
-//   }
-//   for (let i = 0; i % 8 === 0; i++) {
-//     paginationPetsArr = paginationPetsArr.slice(i, i + 7).sort(() => Math.random() - 0.5).concat(paginationPetsArr.slice(i + 7));
-//     i++;
-//   }
-// console.log(paginationPetsArr)
-// return paginationPetsArr;
-// }
-
 
 
 btnPaginationPrev.addEventListener('click', prevPage);
@@ -254,11 +212,10 @@ function changePage(page) {
   if (page > totalPages) {
     page = totalPages;
   }
-  for (let i = (page - 1) * petsPerPage; i < (page * petsPerPage); i++) {
-    renderSlide(paginationPetsArr);
+  renderSlide(paginationPetsArr.slice((page - 1) * petsPerPage, (page - 1) * petsPerPage + petsPerPage));
+  if (pageNumber) {
+    pageNumber.innerHTML = page;
   }
-  pageNumber.innerHTML = page;
-
   if (page === 1) {
     btnPaginationFirst.classList.add('button-round--inactive');
     btnPaginationPrev.classList.add('button-round--inactive');
@@ -280,7 +237,7 @@ function changePage(page) {
 
 window.addEventListener('load', () => {
   createPaginationArray();
-  changePage();
+  firstPage();
   // renderSlide(paginationPetsArr)
 });
 // window.addEventListener('load', renderSlide(paginationPetsArr));
