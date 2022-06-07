@@ -1,5 +1,5 @@
 import { burgerBtn, toggleMenu, background, links } from './burger.js';
-import { modalOpen, modalClose, learnButton, petCard, modalButton, modal, modalShadow, cardHover } from './modal.js';
+import './modal.js';
 
 import pets from './pets.json' assert { type: "json" };
 export let petsArr = pets.map((item, index) => ({ ...item, id: index }));
@@ -57,13 +57,9 @@ export function petShow(index) {
 
 }
 
-// slider
-const buttonNext = document.querySelector('.slider_next');
-const buttonPrev = document.querySelector('.slider_prev');
-
 
 //render cards
-const slide = document.querySelectorAll('.slider__item');
+export const slide = document.querySelectorAll('.slider__item');
 
 
 export function renderSlide(data) {
@@ -76,55 +72,13 @@ export function renderSlide(data) {
   })
 }
 
-const cardsPerSlide = 3;
-
-
-let dataCurSlide = petsArr.slice(0, cardsPerSlide);
-
-
-const getDataForNextSlide = (dataCurrentSlide) => {
-  let curSlideIndexes = dataCurrentSlide.map((index => index.id));
-  const filteredDogsArr = petsArr.map(index => index.id).filter(item => !curSlideIndexes.includes(item));
-  const shuffled = filteredDogsArr.sort(() => 0.5 - Math.random());
-  const selected = shuffled.slice(0, cardsPerSlide);
-  dataCurSlide = selected.map(index => ({ ...petsArr[index], id: index }));
-  return dataCurSlide;
-}
-
-
-buttonNext?.addEventListener('click', () => {
-  const dataNexSlide = getDataForNextSlide(dataCurSlide);
-  renderSlide(dataNexSlide);
-
-})
-
-buttonPrev?.addEventListener('click', () => {
-  const dataNexSlide = getDataForNextSlide(dataCurSlide);
-  renderSlide(dataNexSlide);
-})
-
-buttonPrev?.addEventListener('mouseup', () => {
-  slide.forEach(item => { item.classList.add('slider_active') })
-})
-buttonPrev?.addEventListener('mousedown', () => {
-  slide.forEach(item => { item.classList.remove('slider_active') })
-})
-
-buttonNext?.addEventListener('mouseup', () => {
-  slide.forEach(item => { item.classList.add('slider_active') })
-})
-buttonNext?.addEventListener('mousedown', () => {
-  slide.forEach(item => { item.classList.remove('slider_active') })
-})
-
-
-
 
 slide?.forEach(item => ('animationend', () => {
   item.classList.remove('slider_active')
 }))
 
-window.addEventListener('load', () => {
-  getDataForNextSlide(dataCurSlide);
-  renderSlide(dataCurSlide);
-});
+
+// window.addEventListener('load', () => {
+//   getDataForNextSlide(dataCurSlide);
+//   renderSlide(dataCurSlide);
+// });
